@@ -10,7 +10,7 @@ import Login from "./Auth/Login";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./layout/Navbar";
 import PrivateRoute from "../routing/PrivateRoute";
-// import PassChange from "./auth/PassChange";
+import PassChange from "./Auth/PassChange";
 
 const RouteComponent = () => {
   const authContext = useContext(AuthContext);
@@ -36,7 +36,7 @@ const RouteComponent = () => {
                 <div className="col-lg-9 shadow-sm p-3 mb-5  mt-5">
                 <Fragment>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            {/* <PrivateRoute exact path="/pass_change" component={PassChange} /> */}
+            <PrivateRoute exact path="/pass_change" component={PassChange} />
             </Fragment>
                 </div>
                 <div className="col-lg-1"></div>
