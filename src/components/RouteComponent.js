@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./layout/Navbar";
 import PrivateRoute from "../routing/PrivateRoute";
 import PassChange from "./Auth/PassChange";
+import Register from "./Auth/Register";
 
 const RouteComponent = () => {
   const authContext = useContext(AuthContext);
@@ -27,6 +28,7 @@ const RouteComponent = () => {
         <Fragment>
           <Switch>
             <Route exact path="/" component={Login} />
+            <Route exact path="/register" component={Register} />
             <Fragment>
             <Navbar />
             {user && (
