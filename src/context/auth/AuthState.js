@@ -16,7 +16,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   PAYAVENUES,
-  PAYAVENUES_ERROR
+  PAYAVENUES_ERROR,
+  APPLY_LOAN,
+  APPLY_LOAN_ERROR
   
 } from "../types";
 
@@ -28,7 +30,8 @@ const AuthState = (props) => {
     error: null,
     user: null,
     pass_change:null,
-    getpayavenues:null
+    getpayavenues:null,
+    applyloan:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -165,6 +168,35 @@ const AuthState = (props) => {
   };
 
 
+  const ApplyLoan = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(
+        `${server_url}loan/request`,
+        formData,
+        config
+      );
+      dispatch({
+        type: APPLY_LOAN,
+        payload: res.data,
+      });
+      console.log(res.data);
+      // loadUser()
+    } catch (err) {
+      dispatch({
+        type: APPLY_LOAN_ERROR,
+        payload: err.response.data,
+      });
+      console.log(err.response.data)
+    }
+  };
+
+
+
 
   return (
     <AuthContext.Provider
@@ -176,7 +208,8 @@ const AuthState = (props) => {
         clearErrors,
         passChange,
         register,
-        getPayVenues
+        getPayVenues,
+        ApplyLoan
       }}
     >
       {props.children}
