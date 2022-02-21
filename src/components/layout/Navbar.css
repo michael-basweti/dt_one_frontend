@@ -1,0 +1,239 @@
+.navbar {
+  background-color: #439CD3;
+  height: 5em;
+  display: flex;
+  color: #f5f5f5;
+  /* justify-content: flex-start; */
+  align-items: center;
+}
+
+.bg-color-font{
+  color: #ffffff !important;
+
+}
+
+.jumbotron .d-flex .align-items-center{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.navbar-navl .nav-linkl{
+  color: #ffffff;
+  float: left;
+display: block;
+}
+
+.menu-bars {
+  margin-left: 2em;
+  font-size: 2em;
+  background: none;
+}
+.menu-bars1 {
+  margin-left: 2em;
+  font-size: 2em;
+  background: none;
+}
+
+hr.divider {
+  margin: 0em;
+  border-width: 0.063em;
+}
+
+
+.cl {
+  background-color: #439CD3;
+}
+
+.text-primary {
+  color: #439CD3 !important;
+}
+
+.nav-menu {
+  background-color:#439CD3;
+  width: 17.625em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+  z-index: 10;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5em 0em 0.5em 1em;
+  list-style: none;
+  height: 3.75em;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 1.125em;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  border-radius: 0.25em;
+}
+
+.nav-text a:hover {
+  background-color: #030303;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+.navbar-toggle {
+  /* background-color:#030303; */
+  width: 100%;
+  height: 2em;
+  font-size: 2em;
+  margin-left: 6em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+span {
+  margin-left: 1em;
+}
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+.auth-inner {
+  width: 28.125em;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0em 0.875em 5em rgba(34, 35, 58, 0.2);
+  padding: 2.5em 3.438em 2.813em 3.438em;
+  border-radius: 0.938em;
+  /* transition: all .3s; */
+  position: absolute;
+  top: 50%;
+  left: 100%;
+}
+
+.navbar-navx{
+  left: 50%;
+  top:1%;
+}
+
+.logo_transparent{
+  right: 4em;
+bottom: 4em;
+position: fixed;
+/* width: 30em; */
+}
+
+.logo_transparentn{
+  /* right: 4em;
+bottom: 4em;
+position: fixed; */
+left:50%;
+top:1%;
+width: 12em;
+}
+
+
+.auth-wrapperUs {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+.auth-innerUs {
+  width: 40.125em;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0em 0.875em 5em rgba(34, 35, 58, 0.2);
+  padding: 2.5em 3.438em 2.813em 3.438em;
+  border-radius: 0.938em;
+  /* transition: all .3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+.auth-wrapperR {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+.auth-innerR {
+  width: 40.125em;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0em 0.875em 5em rgba(34, 35, 58, 0.2);
+  padding: 2.5em 3.438em 2.813em 3.438em;
+  border-radius: 0.938em;
+  /* transition: all .3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+.forgot-password,
+.forgot-password a {
+text-align: right;
+font-size: 0.813em;
+padding-top: 0.625em;
+color: #7f7d7d;
+margin: 0;
+}
+
+.forgot-password a {
+color: #030303;
+}
+
+.btn-primary {
+background-color: #439CD3;
+}
+.btn-outline-primary {
+  border-color: #439CD3;
+  color: #439CD3;
+}
+
+.auth-wrapper-register {
+display: flex;
+justify-content: center;
+flex-direction: column;
+text-align: left;
+}
+.auth-inner-register {
+width: 50em;
+margin: auto;
+background: #ffffff;
+box-shadow: 0em 0.875em 5em rgba(34, 35, 58, 0.2);
+padding: 2.5em 3.438em 2.813em 3.438em;
+border-radius: 0.938em;
+transition: all .3s;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
+
+.card {
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+}
