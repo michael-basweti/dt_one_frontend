@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #439CD3;
+  background-color: #6FBD3A;
   height: 5em;
   display: flex;
   color: #f5f5f5;
@@ -10,6 +10,12 @@
 .bg-color-font{
   color: #ffffff !important;
 
+}
+
+.btn-primary:hover {
+  color: #ddf7aa;
+  background-color: #6FBD3A;
+  border-color: #6FBD3A;
 }
 
 .jumbotron .d-flex .align-items-center{
@@ -41,15 +47,16 @@ hr.divider {
 
 
 .cl {
-  background-color: #439CD3;
+  background-color: #6FBD3A;
 }
 
 .text-primary {
-  color: #439CD3 !important;
+  color: #6FBD3A !important;
+  
 }
 
 .nav-menu {
-  background-color:#439CD3;
+  background-color:#6FBD3A;
   width: 17.625em;
   height: 100%;
   display: flex;
@@ -206,11 +213,12 @@ color: #030303;
 }
 
 .btn-primary {
-background-color: #439CD3;
+background-color: #6FBD3A;
+border-color: #6FBD3A;
 }
 .btn-outline-primary {
-  border-color: #439CD3;
-  color: #439CD3;
+  border-color: #6FBD3A;
+  color: #6FBD3A;
 }
 
 .auth-wrapper-register {
