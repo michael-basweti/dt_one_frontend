@@ -16,7 +16,9 @@ const LoanApply = () => {
         error,
         clearErrors,
         getPayVenues,
-        getpayavenues
+        getpayavenues,
+        ApplyLoan,
+        applyloan
       } = authContext;
   
       const [visible, setVisible] = useState(false);
@@ -25,9 +27,22 @@ const LoanApply = () => {
       const [payDate, setPayDate] = useState(new Date());
       useEffect(()=>{
         getPayVenues()
+        if (applyloan) {
+              setAlert(applyloan.message, "success");
+              clearErrors();
+              setSingleSelections([])
+              setVisible(false);
+              setPayDate(new Date())
+              reset()
+          }
+
+          if(error){
+              setVisible(false)
+          }
+
         
         // eslint-disable-next-line
-    },[ reset])
+    },[ reset,applyloan,error])
 
     let loadedavenues = []
     if(getpayavenues){
@@ -47,9 +62,8 @@ const LoanApply = () => {
             let paymentdate = payDate.toLocaleDateString('en-CA')
             let payavenue = singleSelections[0].payavenueid
             console.log(amountrequested,paymentdate,payavenue,description);
-            // PostMpesaCode({amount,mpesacode});
+            ApplyLoan({amountrequested,description,payavenue,paymentdate});
             setVisible(true);
-          //   localStorage.setItem("receivercustomerid", packageid);
         }}else{
             setAlert("Please Select payment Avenue", "danger");
         }
