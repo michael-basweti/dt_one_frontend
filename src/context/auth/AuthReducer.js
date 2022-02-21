@@ -12,6 +12,8 @@ import {
   REGISTER_FAIL,
   PAYAVENUES,
   PAYAVENUES_ERROR,
+  APPLY_LOAN_ERROR,
+  APPLY_LOAN,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -34,6 +36,12 @@ const AuthReducer = (state, action) => {
       return {
         ...state,
         getpayavenues: action.payload,
+        loading: false,
+      };
+      case APPLY_LOAN:
+      return {
+        ...state,
+        applyloan: action.payload,
         loading: false,
       };
     case PASS_CHANGE:
@@ -71,6 +79,7 @@ const AuthReducer = (state, action) => {
 
     case REGISTER_FAIL:
     case PAYAVENUES_ERROR:
+    case APPLY_LOAN_ERROR:
       return {
         ...state,
         loading: false,
@@ -82,6 +91,7 @@ const AuthReducer = (state, action) => {
         ...state,
         error: null,
         addedUser: null,
+        applyloan:null
       };
     default:
       return state;
