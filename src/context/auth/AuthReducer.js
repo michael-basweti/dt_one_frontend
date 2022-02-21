@@ -10,6 +10,8 @@ import {
   PASS_CHANGE_ERROR,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  PAYAVENUES,
+  PAYAVENUES_ERROR,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -25,6 +27,13 @@ const AuthReducer = (state, action) => {
       return {
         ...state,
         addedUser: action.payload,
+        loading: false,
+      };
+      
+      case PAYAVENUES:
+      return {
+        ...state,
+        getpayavenues: action.payload,
         loading: false,
       };
     case PASS_CHANGE:
@@ -61,6 +70,7 @@ const AuthReducer = (state, action) => {
       };
 
     case REGISTER_FAIL:
+    case PAYAVENUES_ERROR:
       return {
         ...state,
         loading: false,
