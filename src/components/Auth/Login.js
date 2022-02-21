@@ -5,7 +5,7 @@ import Alert from "../layout/Alert";
 import Spinner from "../layout/Spinner";
 import { useForm } from "react-hook-form";
 import working from "../../media/working.svg"
-import logo from "../../media/nation_logo_full.png"
+import logo from "../../media/logo.jpg"
 import loginsvg from "../../media/login.svg"
 // import '../layout/Navbar.css'
 
