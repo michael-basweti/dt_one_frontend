@@ -14,7 +14,9 @@ import {
   PASS_CHANGE,
   PASS_CHANGE_ERROR,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  PAYAVENUES,
+  PAYAVENUES_ERROR
   
 } from "../types";
 
@@ -26,6 +28,7 @@ const AuthState = (props) => {
     error: null,
     user: null,
     pass_change:null,
+    getpayavenues:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -143,6 +146,25 @@ const AuthState = (props) => {
   };
 
 
+  // Get Pickup package
+  const getPayVenues = async () => {
+    try {
+      const res = await axios.get(`${server_url}loan/payavenues`);
+      dispatch({
+        type: PAYAVENUES,
+        payload: res.data,
+      });
+      // console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: PAYAVENUES_ERROR,
+        payload: err.response.data,
+      });
+      // console.log(err.response.data);
+    }
+  };
+
+
 
   return (
     <AuthContext.Provider
@@ -154,6 +176,7 @@ const AuthState = (props) => {
         clearErrors,
         passChange,
         register,
+        getPayVenues
       }}
     >
       {props.children}
