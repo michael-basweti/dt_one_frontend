@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
+import {FaBars} from "react-icons/fa";
+import {AiOutlineClose} from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { admin_side, client_side } from "./SidebarData";
 // import logo_no from "../../media/logo_no_bg.png";
@@ -46,7 +46,7 @@ const Navbar = (props) => {
     <div className="hide-on-print">
       <nav className="navbar hide-on-print">
         <Link to="#" className="menu-bars1" style={{ color: "#fff" }}>
-          <FaIcons.FaBars onClick={showSidebar} />
+          <FaBars onClick={showSidebar} />
         </Link>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item d-flex ml-20"></li>
@@ -77,7 +77,7 @@ const Navbar = (props) => {
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle" style={{ color: "#fff" }}>
-            <AiIcons.AiOutlineClose onClick={showSidebar} />
+            <AiOutlineClose onClick={showSidebar} />
           </li>
 
           {Sidebar.map((item, index) => {
