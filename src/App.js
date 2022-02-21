@@ -4,6 +4,7 @@ import AlertState from "./context/alert/AlertState";
 import AuthState from "./context/auth/AuthState";
 import setAuthToken from "./utils/setAuthToken";
 import RouteComponent from "./components/RouteComponent";
+import "react-datepicker/dist/react-datepicker.css";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
