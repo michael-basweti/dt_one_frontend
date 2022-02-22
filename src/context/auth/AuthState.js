@@ -20,7 +20,13 @@ import {
   APPLY_LOAN,
   APPLY_LOAN_ERROR,
   GET_UNPROCESSED_LOANS,
-  GET_UNPROCESSED_LOANS_ERROR
+  GET_UNPROCESSED_LOANS_ERROR,
+  GET_ONE_UNPROCESSED_LOAN,
+  GET_ONE_UNPROCESSED_LOAN_ERROR,
+  DENY_LOAN_ERROR,
+  DENY_LOAN,
+  APPROVE_LOAN_ERROR,
+  APPROVE_LOAN
   
 } from "../types";
 
@@ -34,7 +40,10 @@ const AuthState = (props) => {
     pass_change:null,
     getpayavenues:null,
     applyloan:null,
-    unprocessed:null
+    unprocessed:null,
+    oneunprocessed:null,
+    denyloan:null,
+    approveloan:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -123,6 +132,48 @@ const AuthState = (props) => {
   };
 
 
+  // DENY LOAN
+  const denyLoan = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(`${server_url}loan/deny`, formData, config);
+      dispatch({
+        type: DENY_LOAN,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: DENY_LOAN_ERROR,
+        payload: err.response.data,
+      });
+    }
+  };
+
+  // APPROVE LOAN
+  const approveLoan = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(`${server_url}loan/approve`, formData, config);
+      dispatch({
+        type: APPROVE_LOAN,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: APPROVE_LOAN_ERROR,
+        payload: err.response.data,
+      });
+    }
+  };
+
    // pass change 
    const passChange = async (formData) => {
     const config = {
@@ -189,6 +240,25 @@ const AuthState = (props) => {
     }
   };
 
+
+    // Get Pickup package
+    const getOneUnprocessedLoans = async (loanid) => {
+      try {
+        const res = await axios.get(`${server_url}loan/oneunprocessed/${loanid}`);
+        dispatch({
+          type: GET_ONE_UNPROCESSED_LOAN,
+          payload: res.data,
+        });
+        // console.log(res.data);
+      } catch (err) {
+        dispatch({
+          type: GET_ONE_UNPROCESSED_LOAN_ERROR,
+          payload: err.response.data,
+        });
+        // console.log(err.response.data);
+      }
+    };
+
   const ApplyLoan = async (formData) => {
     const config = {
       headers: {
@@ -232,6 +302,9 @@ const AuthState = (props) => {
         getPayVenues,
         ApplyLoan,
         getUnprocessedLoans,
+        getOneUnprocessedLoans,
+        approveLoan,
+        denyLoan
       }}
     >
       {props.children}
