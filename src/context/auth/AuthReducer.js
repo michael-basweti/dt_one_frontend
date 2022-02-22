@@ -22,6 +22,8 @@ import {
   APPROVE_LOAN_ERROR,
   DENY_LOAN,
   APPROVE_LOAN,
+  GET_USER_LOANS,
+  GET_USER_LOANS_ERROR,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -39,37 +41,44 @@ const AuthReducer = (state, action) => {
         addedUser: action.payload,
         loading: false,
       };
-      case GET_UNPROCESSED_LOANS:
+    case GET_UNPROCESSED_LOANS:
       return {
         ...state,
         unprocessed: action.payload,
         loading: false,
       };
-      case GET_ONE_UNPROCESSED_LOAN:
+    case GET_ONE_UNPROCESSED_LOAN:
       return {
         ...state,
         oneunprocessed: action.payload,
         loading: false,
       };
-      case PAYAVENUES:
+    case PAYAVENUES:
       return {
         ...state,
         getpayavenues: action.payload,
         loading: false,
       };
-      case APPLY_LOAN:
+    case APPLY_LOAN:
       return {
         ...state,
         applyloan: action.payload,
         loading: false,
       };
-      case APPROVE_LOAN:
+
+    case GET_USER_LOANS:
+      return {
+        ...state,
+        userloans: action.payload,
+        loading: false,
+      };
+    case APPROVE_LOAN:
       return {
         ...state,
         approveloan: action.payload,
         loading: false,
       };
-      case DENY_LOAN:
+    case DENY_LOAN:
       return {
         ...state,
         denyloan: action.payload,
@@ -115,6 +124,7 @@ const AuthReducer = (state, action) => {
     case GET_ONE_UNPROCESSED_LOAN_ERROR:
     case DENY_LOAN_ERROR:
     case APPROVE_LOAN_ERROR:
+    case GET_USER_LOANS_ERROR:
       return {
         ...state,
         loading: false,
@@ -126,9 +136,9 @@ const AuthReducer = (state, action) => {
         ...state,
         error: null,
         addedUser: null,
-        applyloan:null,
-        denyloan:null,
-        approveloan:null
+        applyloan: null,
+        denyloan: null,
+        approveloan: null,
       };
     default:
       return state;
