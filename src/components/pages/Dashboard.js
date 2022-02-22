@@ -7,17 +7,18 @@ const Dashboard = () => {
   const authContext = useContext(AuthContext);
   let history = useHistory();
   const {
-    error,
-    clearErrors,
     loadUser,
     getUnprocessedLoans,
     unprocessed,
     user,
+    getUserLoans,
+    userloans
   } = authContext;
 
   useEffect(() => {
     loadUser();
     getUnprocessedLoans()
+    getUserLoans()
      // eslint-disable-next-line
   }, []);
 
@@ -46,7 +47,7 @@ const Dashboard = () => {
                     <th className="text-center">Pay Through</th>
                     <th className="text-center">Due Date</th>
                     <th className="text-center">Amount Requested</th>
-                    
+                    <th className="text-center">Process</th>
                     
                   </tr>
                 </thead>
@@ -80,8 +81,52 @@ const Dashboard = () => {
     }
 
       {user && user.usertype === 2 && <div className="">
-      <h2 className="text-center">Your Loans</h2>
-    </div>}
+          <h2 className="text-center">My Loans</h2>
+          {userloans !== null && (
+              <section className="content-info overflow-auto">
+              <table className="table table-striped table-bordered table-hover">
+                <thead className="">
+                  <tr>
+                    <th className="text-center"> Loan No.</th>
+                    <th className="text-center">Requested By</th>
+                    <th className="text-center">Pay Through</th>
+                    <th className="text-center">Due Date</th>
+                    <th className="text-center">Amount Requested</th>
+                    <th className="text-center">Status</th>
+                    
+                  </tr>
+                </thead>
+                <tbody className="text-center">
+                  {userloans.map((option) => (
+                    <tr key={option.loanid}>
+                      <td>{option.loanid}</td>
+                      <td>{option.requestedbyname}</td>
+                      <td>{option.payavenuedescription}</td>
+                      <td>{option.paymentdate}</td>
+                      <td>{option.amountrequested}</td>
+                      <td>
+                          {option.approved===true&&(
+                              <p className="text-success">Approved</p>
+                          )}
+                          {option.denied===true&&(
+                              <p className="text-danger">Denied</p>
+                          )}
+                          {option.denied===null && option.approved===false&&(
+                              <p className="">Pending</p>
+                          )}
+                      </td>
+                
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="pagination-wrapper mt-6">
+                <div>
+        </div>
+      </div>
+            </section>
+          )}
+        </div>}
     </div>
   );
 };
