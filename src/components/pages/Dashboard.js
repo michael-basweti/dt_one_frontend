@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../../context/auth/AuthContext";
+import { useHistory } from "react-router-dom";
+import Alert from "../layout/Alert";
 
 const Dashboard = () => {
   const authContext = useContext(AuthContext);
+  let history = useHistory();
   const {
     error,
     clearErrors,
@@ -18,9 +21,18 @@ const Dashboard = () => {
      // eslint-disable-next-line
   }, []);
 
+  const Submit = (item) => (e) => {
+    e.preventDefault()
+    localStorage.setItem("loanid", item);
+    history.push('/approve')
+    // console.log(item);
+
+  }
+
   return (
     <div>
       <h1>dashboard</h1>
+      <Alert />
       {user && user.usertype === 1 && 
       <div className="">
           {unprocessed !== null && (
@@ -45,6 +57,13 @@ const Dashboard = () => {
                       <td>{option.payavenuedescription}</td>
                       <td>{option.paymentdate}</td>
                       <td>{option.amountrequested}</td>
+                      <td><button
+                              className="btn btn-primary btn-sm"
+                              onClick={Submit(option.loanid)}
+                              type="button"
+                            >
+                              Process
+                            </button></td>
                 
                     </tr>
                   ))}
