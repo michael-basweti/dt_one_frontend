@@ -14,6 +14,7 @@ import PassChange from "./Auth/PassChange";
 import Register from "./Auth/Register";
 import LoanApply from "./Loan/LoanApply";
 import Reports from "./Loan/Reports";
+import LoanApprove from "./Loan/LoanApprove";
 
 const RouteComponent = () => {
   const authContext = useContext(AuthContext);
@@ -42,6 +43,7 @@ const RouteComponent = () => {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/loan" component={LoanApply} />
             <PrivateRoute exact path="/reports" component={Reports} />
+            <PrivateRoute exact path="/approve" component={LoanApprove} />
             <PrivateRoute exact path="/pass_change" component={PassChange} />
             </Fragment>
                 </div>
