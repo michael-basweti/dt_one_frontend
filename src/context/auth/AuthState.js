@@ -18,7 +18,9 @@ import {
   PAYAVENUES,
   PAYAVENUES_ERROR,
   APPLY_LOAN,
-  APPLY_LOAN_ERROR
+  APPLY_LOAN_ERROR,
+  GET_UNPROCESSED_LOANS,
+  GET_UNPROCESSED_LOANS_ERROR
   
 } from "../types";
 
@@ -31,7 +33,8 @@ const AuthState = (props) => {
     user: null,
     pass_change:null,
     getpayavenues:null,
-    applyloan:null
+    applyloan:null,
+    unprocessed:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -168,6 +171,24 @@ const AuthState = (props) => {
   };
 
 
+   // Get Pickup package
+   const getUnprocessedLoans = async () => {
+    try {
+      const res = await axios.get(`${server_url}loan/unprocessed`);
+      dispatch({
+        type: GET_UNPROCESSED_LOANS,
+        payload: res.data,
+      });
+      // console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: GET_UNPROCESSED_LOANS_ERROR,
+        payload: err.response.data,
+      });
+      // console.log(err.response.data);
+    }
+  };
+
   const ApplyLoan = async (formData) => {
     const config = {
       headers: {
@@ -209,7 +230,8 @@ const AuthState = (props) => {
         passChange,
         register,
         getPayVenues,
-        ApplyLoan
+        ApplyLoan,
+        getUnprocessedLoans,
       }}
     >
       {props.children}
