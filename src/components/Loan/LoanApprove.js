@@ -85,7 +85,9 @@ const LoanApprove = () => {
 //   console.log(status);
 
   return (
-    <div>
+    <div className="card">
+        <div className="p-5">
+        <h2 className="text-center">Process Loan</h2>
 <Alert />
 {visible ? (
             <div>
@@ -272,7 +274,7 @@ const LoanApprove = () => {
             </div>
                   </form>
     </div>}
-    
+    </div>
 
     </div>
     
