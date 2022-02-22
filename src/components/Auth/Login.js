@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import working from "../../media/working.svg"
 import logo from "../../media/logo.jpg"
 import loginsvg from "../../media/login.svg"
+import { Link } from "react-router-dom";
 // import '../layout/Navbar.css'
 
 const Login = (props) => {
@@ -107,6 +108,7 @@ const Login = (props) => {
                 Remember me
               </label>
             </div>
+            <p>Don't have an account? <Link to={'register'}>Register</Link></p>
           </div>
                        <div className="d-grid gap-2 mt-3">
                        <button type="submit"  className="btn btn-primary btn-lg p-3" >Login</button>
