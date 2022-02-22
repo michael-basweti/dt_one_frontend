@@ -14,6 +14,8 @@ import {
   PAYAVENUES_ERROR,
   APPLY_LOAN_ERROR,
   APPLY_LOAN,
+  GET_UNPROCESSED_LOANS,
+  GET_UNPROCESSED_LOANS_ERROR,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -29,6 +31,12 @@ const AuthReducer = (state, action) => {
       return {
         ...state,
         addedUser: action.payload,
+        loading: false,
+      };
+      case GET_UNPROCESSED_LOANS:
+      return {
+        ...state,
+        unprocessed: action.payload,
         loading: false,
       };
       
@@ -80,6 +88,7 @@ const AuthReducer = (state, action) => {
     case REGISTER_FAIL:
     case PAYAVENUES_ERROR:
     case APPLY_LOAN_ERROR:
+    case GET_UNPROCESSED_LOANS_ERROR:
       return {
         ...state,
         loading: false,
