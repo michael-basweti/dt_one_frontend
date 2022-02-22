@@ -35,6 +35,7 @@ const Dashboard = () => {
       <Alert />
       {user && user.usertype === 1 && 
       <div className="">
+          <h2 className="text-center">Unprocessed Loans</h2>
           {unprocessed !== null && (
               <section className="content-info overflow-auto">
               <table className="table table-striped table-bordered table-hover">
@@ -79,7 +80,7 @@ const Dashboard = () => {
     }
 
       {user && user.usertype === 2 && <div className="">
-          client
+      <h2 className="text-center">Your Loans</h2>
     </div>}
     </div>
   );
