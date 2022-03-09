@@ -28,6 +28,8 @@ import {
   MAKE_PAYMENT_ERROR,
   GET_LOANS_DUE_ERROR,
   GET_LOANS_DUE,
+  GET_LOANS_DUE_EXCEL,
+  GET_LOANS_DUE_EXCEL_ERROR,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -45,6 +47,13 @@ const AuthReducer = (state, action) => {
         addedUser: action.payload,
         loading: false,
       };
+      case GET_LOANS_DUE_EXCEL:
+        return {
+          ...state,
+          getloansdueexcel: action.payload,
+          loading: false,
+        };
+      
     case GET_UNPROCESSED_LOANS:
       return {
         ...state,
@@ -143,6 +152,7 @@ const AuthReducer = (state, action) => {
     case GET_USER_LOANS_ERROR:
     case MAKE_PAYMENT_ERROR:
     case GET_LOANS_DUE_ERROR:
+    case GET_LOANS_DUE_EXCEL_ERROR:
       return {
         ...state,
         loading: false,
