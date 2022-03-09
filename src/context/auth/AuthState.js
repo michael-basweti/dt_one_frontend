@@ -30,6 +30,8 @@ import {
   GET_USER_LOANS_ERROR,
   MAKE_PAYMENT,
   MAKE_PAYMENT_ERROR,
+  GET_LOANS_DUE,
+  GET_LOANS_DUE_ERROR,
 } from "../types";
 
 const AuthState = (props) => {
@@ -47,7 +49,8 @@ const AuthState = (props) => {
     denyloan: null,
     approveloan: null,
     userloans: null,
-    makepayment:null
+    makepayment:null,
+    getunpaidloans:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -258,6 +261,25 @@ const AuthState = (props) => {
     }
   };
 
+
+  // GET UNPAID LOANS
+  const getUnpaidLoans = async (startDate,endDate) => {
+    try {
+      const res = await axios.get(`${server_url}loan/loansdue/${startDate}/${endDate}`);
+      dispatch({
+        type: GET_LOANS_DUE,
+        payload: res.data,
+      });
+      // console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: GET_LOANS_DUE_ERROR,
+        payload: err.response.data,
+      });
+      // console.log(err.response.data);
+    }
+  };
+
   // Get Pickup package
   const getUnprocessedLoans = async () => {
     try {
@@ -356,7 +378,8 @@ const AuthState = (props) => {
         approveLoan,
         denyLoan,
         getUserLoans,
-        makePayment
+        makePayment,
+        getUnpaidLoans,
       }}
     >
       {props.children}
