@@ -24,6 +24,8 @@ import {
   APPROVE_LOAN,
   GET_USER_LOANS,
   GET_USER_LOANS_ERROR,
+  MAKE_PAYMENT,
+  MAKE_PAYMENT_ERROR,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -53,6 +55,12 @@ const AuthReducer = (state, action) => {
         oneunprocessed: action.payload,
         loading: false,
       };
+      case MAKE_PAYMENT:
+        return {
+          ...state,
+          makepayment: action.payload,
+          loading: false,
+        };
     case PAYAVENUES:
       return {
         ...state,
@@ -125,6 +133,7 @@ const AuthReducer = (state, action) => {
     case DENY_LOAN_ERROR:
     case APPROVE_LOAN_ERROR:
     case GET_USER_LOANS_ERROR:
+    case MAKE_PAYMENT_ERROR:
       return {
         ...state,
         loading: false,
@@ -139,6 +148,7 @@ const AuthReducer = (state, action) => {
         applyloan: null,
         denyloan: null,
         approveloan: null,
+        makepayment:null,
       };
     default:
       return state;
