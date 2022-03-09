@@ -3,6 +3,7 @@ import AuthContext from "../../context/auth/AuthContext";
 import AlertContext from "../../context/alert/AlertContext";
 import Alert from "../layout/Alert";
 import DatePicker from "react-datepicker";
+import Spinner from "../layout/Spinner";
 
 const Reports = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -19,29 +20,41 @@ const Reports = () => {
     loadUser,
     getUnpaidLoans,
     getunpaidloans,
+    getLoansDueExcel,
+    getloansdueexcel
   } = authContext;
 
   useEffect(() => {
     loadUser();
     getUnpaidLoans(startdate,enddate);
-    // if (makepayment) {
-    //   setAlert(makepayment.message, "success");
-    //   setVisible(false);
-    //   clearErrors();
-    //   reset()
-    //   localStorage.removeItem("loanid_pay");
-    //   history.push("/dashboard");
-    // }
+    if (getloansdueexcel) {
+      setVisible(false);
+      clearErrors();
+    }
     if (error) {
       setVisible(false);
       setAlert(error.message,'danger')
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [getunpaidloans, error]);
+  }, [getunpaidloans, error, getloansdueexcel]);
+
+  const get_excel = () => {
+    // e.preventDefault()
+    getLoansDueExcel(startdate,enddate)
+    setVisible(true)
+  }
   return (
     <div>
       <Alert />
+      {visible ? (
+          <div>
+            {/* <h5 className="text-center">Posting Payment...</h5> */}
+            <Spinner />
+          </div>
+        ) : (
+          <div></div>
+        )}
       <h1 className="text-center">Unpaid Loan Reports</h1>
       <h5 className="text-center">Filter By Date</h5>
       <div className="row">
@@ -80,7 +93,7 @@ const Reports = () => {
             </div>
             <div className="col-lg-5">
             <div className="d-flex justify-content-center mt-2 p-5">
-                <button type="button" className="btn btn-primary btn-block">
+                <button type="button" className="btn btn-primary btn-block" onClick={get_excel}>
                   Download To Excel
                 </button>
               </div>
