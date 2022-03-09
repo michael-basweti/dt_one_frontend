@@ -21,7 +21,9 @@ const Reports = () => {
     getUnpaidLoans,
     getunpaidloans,
     getLoansDueExcel,
-    getloansdueexcel
+    getloansdueexcel,
+    sendemails,
+    sendEmails
   } = authContext;
 
   useEffect(() => {
@@ -31,17 +33,27 @@ const Reports = () => {
       setVisible(false);
       clearErrors();
     }
+    if (sendemails) {
+      setAlert("emails sent",'success')
+      setVisible(false);
+      clearErrors();
+    }
     if (error) {
       setVisible(false);
       setAlert(error.message,'danger')
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [getunpaidloans, error, getloansdueexcel]);
+  }, [getunpaidloans, error, getloansdueexcel, sendemails]);
 
   const get_excel = () => {
     // e.preventDefault()
     getLoansDueExcel(startdate,enddate)
+    setVisible(true)
+  }
+
+  const send_mails = () =>{
+    sendEmails(startdate,enddate)
     setVisible(true)
   }
   return (
@@ -99,7 +111,7 @@ const Reports = () => {
               </div>
 
               <div className="d-flex justify-content-center mt-2 p-5">
-                <button type="button" className="btn btn-primary btn-block">
+                <button type="button" className="btn btn-primary btn-block" onClick={send_mails}>
                   Trigger Email
                 </button>
               </div>
