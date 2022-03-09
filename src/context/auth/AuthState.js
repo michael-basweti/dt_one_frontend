@@ -32,6 +32,8 @@ import {
   MAKE_PAYMENT_ERROR,
   GET_LOANS_DUE,
   GET_LOANS_DUE_ERROR,
+  GET_LOANS_DUE_EXCEL,
+  GET_LOANS_DUE_EXCEL_ERROR,
 } from "../types";
 
 const AuthState = (props) => {
@@ -50,7 +52,8 @@ const AuthState = (props) => {
     approveloan: null,
     userloans: null,
     makepayment:null,
-    getunpaidloans:null
+    getunpaidloans:null,
+    getloansdueexcel:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -361,6 +364,36 @@ const AuthState = (props) => {
     }
   };
 
+  // get excel
+  const getLoansDueExcel = async (startingdate, enddate) => {
+    try {
+      const res = await axios.get(
+        `${server_url}loan/loansdueexcel/${startingdate}/${enddate}`,
+        { responseType: "blob" }
+      );
+      dispatch({
+        type: GET_LOANS_DUE_EXCEL,
+        payload: res.data,
+      });
+      //Create a Blob from the PDF Stream
+      // console.log(res.data);
+      const filepod = new Blob([res.data], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+      //Build a URL from the file
+      const fileURLPOD = URL.createObjectURL(filepod);
+      //Open the URL on new Window
+      window.open(fileURLPOD);
+      // console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: GET_LOANS_DUE_EXCEL_ERROR,
+        payload: err.response,
+      });
+      // console.log(err.response);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -380,6 +413,7 @@ const AuthState = (props) => {
         getUserLoans,
         makePayment,
         getUnpaidLoans,
+        getLoansDueExcel
       }}
     >
       {props.children}
