@@ -34,6 +34,8 @@ import {
   GET_LOANS_DUE_ERROR,
   GET_LOANS_DUE_EXCEL,
   GET_LOANS_DUE_EXCEL_ERROR,
+  SEND_EMAILS,
+  SEND_EMAILS_ERROR,
 } from "../types";
 
 const AuthState = (props) => {
@@ -51,9 +53,10 @@ const AuthState = (props) => {
     denyloan: null,
     approveloan: null,
     userloans: null,
-    makepayment:null,
-    getunpaidloans:null,
-    getloansdueexcel:null
+    makepayment: null,
+    getunpaidloans: null,
+    getloansdueexcel: null,
+    sendemails: null,
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -104,7 +107,6 @@ const AuthState = (props) => {
       // console.log(err.response.data);
     }
   };
-
 
   const makePayment = async (formData) => {
     const config = {
@@ -264,11 +266,12 @@ const AuthState = (props) => {
     }
   };
 
-
   // GET UNPAID LOANS
-  const getUnpaidLoans = async (startDate,endDate) => {
+  const getUnpaidLoans = async (startDate, endDate) => {
     try {
-      const res = await axios.get(`${server_url}loan/loansdue/${startDate}/${endDate}`);
+      const res = await axios.get(
+        `${server_url}loan/loansdue/${startDate}/${endDate}`
+      );
       dispatch({
         type: GET_LOANS_DUE,
         payload: res.data,
@@ -277,6 +280,26 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: GET_LOANS_DUE_ERROR,
+        payload: err.response.data,
+      });
+      // console.log(err.response.data);
+    }
+  };
+
+  // GET UNPAID LOANS
+  const sendEmails = async (startDate, endDate) => {
+    try {
+      const res = await axios.get(
+        `${server_url}loan/sendemails/${startDate}/${endDate}`
+      );
+      dispatch({
+        type: SEND_EMAILS,
+        payload: res.data,
+      });
+      // console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: SEND_EMAILS_ERROR,
         payload: err.response.data,
       });
       // console.log(err.response.data);
@@ -413,7 +436,8 @@ const AuthState = (props) => {
         getUserLoans,
         makePayment,
         getUnpaidLoans,
-        getLoansDueExcel
+        getLoansDueExcel,
+        sendEmails,
       }}
     >
       {props.children}
