@@ -30,6 +30,14 @@ const Dashboard = () => {
 
   }
 
+  const Payment = (item) => (e) => {
+    e.preventDefault()
+    localStorage.setItem("loanid_pay", item);
+    history.push('/payment')
+    // console.log(item);
+
+  }
+
   return (
     <div>
       <h1>dashboard</h1>
@@ -55,7 +63,7 @@ const Dashboard = () => {
                   {unprocessed.map((option) => (
                     <tr key={option.loanid}>
                       <td>{option.loanid}</td>
-                      <td>{option.requestedbyname}</td>
+                      <td>{option.requestedname}</td>
                       <td>{option.payavenuedescription}</td>
                       <td>{option.paymentdate}</td>
                       <td>{option.amountrequested}</td>
@@ -88,22 +96,27 @@ const Dashboard = () => {
                 <thead className="">
                   <tr>
                     <th className="text-center"> Loan No.</th>
-                    <th className="text-center">Requested By</th>
+                    {/* <th className="text-center">Requested By</th> */}
                     <th className="text-center">Pay Through</th>
                     <th className="text-center">Due Date</th>
                     <th className="text-center">Amount Requested</th>
+                    <th className="text-center">Amount Dispatched</th>
                     <th className="text-center">Status</th>
-                    
+                    <th className="text-center">Amount Paid</th>
+                    <th className="text-center">Amount Remaining</th>
+                    <th className="text-center">Fully Paid</th>
+                    <th className="text-center">Make Payment</th>
                   </tr>
                 </thead>
                 <tbody className="text-center">
                   {userloans.map((option) => (
                     <tr key={option.loanid}>
                       <td>{option.loanid}</td>
-                      <td>{option.requestedbyname}</td>
+                      {/* <td>{option.requestedname}</td> */}
                       <td>{option.payavenuedescription}</td>
                       <td>{option.paymentdate}</td>
                       <td>{option.amountrequested}</td>
+                      <td>{option.amountdispatched}</td>
                       <td>
                           {option.approved===true&&(
                               <p className="text-success">Approved</p>
@@ -115,7 +128,31 @@ const Dashboard = () => {
                               <p className="">Pending</p>
                           )}
                       </td>
-                
+                      <td>{option.real_amount_paid}</td>
+                      <td>{option.remainingamount}</td>
+                      <td>
+                          {option.fullypaid===true&&(
+                              <p className="text-success">Yes</p>
+                          )}
+                          {option.fullypaid===false&&(
+                              <p className="text-danger">No</p>
+                          )}
+                          {option.fullypaid===null&&(
+                              <p className="text-danger">No</p>
+                          )}
+                      </td>
+                      <td>
+                          {option.approved===true && (option.fullypaid === false || option.fullypaid === null)&&(
+                              <button
+                              className="btn btn-primary btn-sm"
+                              onClick={Payment(option.loanid)}
+                              type="button"
+                            >
+                              Make Payment
+                            </button>
+                          )}
+                          
+                      </td>
                     </tr>
                   ))}
                 </tbody>
