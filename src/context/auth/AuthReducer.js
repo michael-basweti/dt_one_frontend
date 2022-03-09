@@ -30,6 +30,8 @@ import {
   GET_LOANS_DUE,
   GET_LOANS_DUE_EXCEL,
   GET_LOANS_DUE_EXCEL_ERROR,
+  SEND_EMAILS_ERROR,
+  SEND_EMAILS,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -47,13 +49,13 @@ const AuthReducer = (state, action) => {
         addedUser: action.payload,
         loading: false,
       };
-      case GET_LOANS_DUE_EXCEL:
-        return {
-          ...state,
-          getloansdueexcel: action.payload,
-          loading: false,
-        };
-      
+    case GET_LOANS_DUE_EXCEL:
+      return {
+        ...state,
+        getloansdueexcel: action.payload,
+        loading: false,
+      };
+
     case GET_UNPROCESSED_LOANS:
       return {
         ...state,
@@ -66,12 +68,12 @@ const AuthReducer = (state, action) => {
         oneunprocessed: action.payload,
         loading: false,
       };
-      case MAKE_PAYMENT:
-        return {
-          ...state,
-          makepayment: action.payload,
-          loading: false,
-        };
+    case MAKE_PAYMENT:
+      return {
+        ...state,
+        makepayment: action.payload,
+        loading: false,
+      };
     case PAYAVENUES:
       return {
         ...state,
@@ -84,13 +86,13 @@ const AuthReducer = (state, action) => {
         applyloan: action.payload,
         loading: false,
       };
-      case GET_LOANS_DUE:
-        return {
-          ...state,
-          getunpaidloans: action.payload,
-          loading: false,
-        };
-      
+    case GET_LOANS_DUE:
+      return {
+        ...state,
+        getunpaidloans: action.payload,
+        loading: false,
+      };
+
     case GET_USER_LOANS:
       return {
         ...state,
@@ -107,6 +109,12 @@ const AuthReducer = (state, action) => {
       return {
         ...state,
         denyloan: action.payload,
+        loading: false,
+      };
+    case SEND_EMAILS:
+      return {
+        ...state,
+        sendemails: action.payload,
         loading: false,
       };
     case PASS_CHANGE:
@@ -153,6 +161,7 @@ const AuthReducer = (state, action) => {
     case MAKE_PAYMENT_ERROR:
     case GET_LOANS_DUE_ERROR:
     case GET_LOANS_DUE_EXCEL_ERROR:
+    case SEND_EMAILS_ERROR:
       return {
         ...state,
         loading: false,
@@ -167,7 +176,8 @@ const AuthReducer = (state, action) => {
         applyloan: null,
         denyloan: null,
         approveloan: null,
-        makepayment:null,
+        makepayment: null,
+        sendemails: null,
       };
     default:
       return state;
