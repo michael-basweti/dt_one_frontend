@@ -28,6 +28,8 @@ import {
   APPROVE_LOAN,
   GET_USER_LOANS,
   GET_USER_LOANS_ERROR,
+  MAKE_PAYMENT,
+  MAKE_PAYMENT_ERROR,
 } from "../types";
 
 const AuthState = (props) => {
@@ -45,6 +47,7 @@ const AuthState = (props) => {
     denyloan: null,
     approveloan: null,
     userloans: null,
+    makepayment:null
   };
 
   const server_url = process.env.REACT_APP_SERVER_DOMAIN;
@@ -85,11 +88,39 @@ const AuthState = (props) => {
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
-      console.log(res.data);
+      // console.log(res.data);
       // loadUser()
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
+        payload: err.response.data,
+      });
+      // console.log(err.response.data);
+    }
+  };
+
+
+  const makePayment = async (formData) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(
+        `${server_url}loan/makepayments`,
+        formData,
+        config
+      );
+      dispatch({
+        type: MAKE_PAYMENT,
+        payload: res.data,
+      });
+      console.log(res.data);
+      // loadUser()
+    } catch (err) {
+      dispatch({
+        type: MAKE_PAYMENT_ERROR,
         payload: err.response.data,
       });
       console.log(err.response.data);
@@ -325,6 +356,7 @@ const AuthState = (props) => {
         approveLoan,
         denyLoan,
         getUserLoans,
+        makePayment
       }}
     >
       {props.children}
