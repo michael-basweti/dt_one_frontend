@@ -15,6 +15,7 @@ import Register from "./Auth/Register";
 import LoanApply from "./Loan/LoanApply";
 import Reports from "./Loan/Reports";
 import LoanApprove from "./Loan/LoanApprove";
+import Payment from "./Loan/Payment";
 
 const RouteComponent = () => {
   const authContext = useContext(AuthContext);
@@ -41,6 +42,7 @@ const RouteComponent = () => {
                 <div className="col-lg-9 shadow-sm p-3 mb-5  mt-5">
                 <Fragment>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/payment" component={Payment} />
             <PrivateRoute exact path="/loan" component={LoanApply} />
             <PrivateRoute exact path="/reports" component={Reports} />
             <PrivateRoute exact path="/approve" component={LoanApprove} />
