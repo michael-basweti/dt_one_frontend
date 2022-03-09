@@ -26,6 +26,8 @@ import {
   GET_USER_LOANS_ERROR,
   MAKE_PAYMENT,
   MAKE_PAYMENT_ERROR,
+  GET_LOANS_DUE_ERROR,
+  GET_LOANS_DUE,
 } from "../types";
 
 const AuthReducer = (state, action) => {
@@ -73,7 +75,13 @@ const AuthReducer = (state, action) => {
         applyloan: action.payload,
         loading: false,
       };
-
+      case GET_LOANS_DUE:
+        return {
+          ...state,
+          getunpaidloans: action.payload,
+          loading: false,
+        };
+      
     case GET_USER_LOANS:
       return {
         ...state,
@@ -134,6 +142,7 @@ const AuthReducer = (state, action) => {
     case APPROVE_LOAN_ERROR:
     case GET_USER_LOANS_ERROR:
     case MAKE_PAYMENT_ERROR:
+    case GET_LOANS_DUE_ERROR:
       return {
         ...state,
         loading: false,
