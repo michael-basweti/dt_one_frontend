@@ -17,6 +17,8 @@
   background-color: #6FBD3A;
   border-color: #6FBD3A;
 }
+.btn-primary:active { background-color: #6FBD3A }
+.btn-primary:focus { background-color: #6FBD3A }
 
 .jumbotron .d-flex .align-items-center{
   width: 100% !important;
